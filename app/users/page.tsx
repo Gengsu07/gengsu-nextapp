@@ -11,10 +11,11 @@ const UsersPage = async () => {
     next: { revalidate: 60 },
   });
   const users: User[] = await res.json();
+
   return (
     <>
       <h1>UsersPage</h1>
-      <table className="table table-zebra">
+      <table className="table">
         <thead>
           <tr>
             <th>
