@@ -1,4 +1,5 @@
-import ProductCard from "@/app/components/ProductCard/ProductCard";
+"use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface Props {
@@ -6,10 +7,18 @@ interface Props {
 }
 
 const UsersDetail = ({ params: { id } }: Props) => {
+  const router = useRouter();
   return (
     <div>
       Users :{id}
-      <ProductCard />
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={() => router.push("/users")}
+        >
+          Create
+        </button>
+      </div>
     </div>
   );
 };
