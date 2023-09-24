@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import React from "react";
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 
 const UsersDetail = ({ params: { id } }: Props) => {
   const router = useRouter();
+  if (id > 10) notFound();
   return (
     <div>
       Users :{id}
