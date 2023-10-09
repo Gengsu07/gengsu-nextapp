@@ -7,12 +7,25 @@ export default async function Home() {
   const session = await getServerSession(OAuthOption);
   return (
     <>
-      <h1> Hello {session?.user?.name}</h1>
+      <h1> Hello {session?.user?.email}</h1>
       <ul>
         <li>
           <Link href={"/users"}>Users</Link>
         </li>
-        <ProductCard />
+        {session ? (
+          <ProductCard />
+        ) : (
+          <div>
+            <p>Please Login or Register</p>
+            <div>
+              <Link href={"/signup"}>
+                <button className="btn bg-blue-800 text-white mx-2 my-2 hover:bg-blue-500 hover:text-gray-700">
+                  Register
+                </button>
+              </Link>
+            </div>
+          </div>
+        )}
 
         <li>
           <Link href={"/users/detail"}>Users Detail</Link>

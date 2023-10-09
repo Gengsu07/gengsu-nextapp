@@ -37,7 +37,8 @@ export const OAuthOption:NextAuthOptions = {
 ],
 session:{strategy:'jwt'},
 pages:{
-    newUser:'/auth/register'
+    newUser:'/register',
+    signIn:'/login'
 }
 }
 
