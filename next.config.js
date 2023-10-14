@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "www.notion.so",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "**.google.com",
+        pathname: "/**",
+      },
     ],
   },
 };

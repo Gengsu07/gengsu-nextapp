@@ -9,7 +9,9 @@ export default async function Home() {
   const session = await getServerSession(OAuthOption);
   return (
     <>
-      <h1> Hello {session?.user?.email}</h1>
+      <h1 className="font-montserrat text-black">
+        Hello {session?.user?.email}
+      </h1>
       <Image src={freeplestine} alt="freeplestine"></Image>
       <ul>
         <li>

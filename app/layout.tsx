@@ -1,10 +1,22 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import NavBar from "./components/NavBar";
 import AuthProvider from "./auth/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const montserat = Montserrat({
+  subsets: ["latin"],
+  weight: "500",
+  variable: "--font--montserrat",
+});
+
+const poppins = localFont({
+  src: "../public/fonts/poppins-regular-webfont.woff2",
+  variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
   title: "Gengsu Next App",
@@ -18,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="light">
-      <body className={inter.className}>
+      <body className={montserat.variable}>
         <AuthProvider>
           <NavBar />
           <main className="mt-1 p-2">{children}</main>

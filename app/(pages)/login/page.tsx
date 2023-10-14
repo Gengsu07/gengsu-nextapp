@@ -47,6 +47,14 @@ export default function Login() {
       SetInfo(ket);
     }
   };
+
+  const handleGoogle = async () => {
+    await signIn("google", { callbackUrl: "https://localhost:3000" });
+  };
+  const handleGithub = async () => {
+    await signIn("github", { callbackUrl: "https://localhost:3000" });
+  };
+
   return (
     <>
       <div className="px-5 flex md:rounded-md min-h-full flex-1 flex-col justify-center bg-blue-950 max-w-xl md:mx-auto md:my-5  md:px-6 lg:px-8 py-12">
@@ -131,6 +139,20 @@ export default function Login() {
                 <span className="font-bold "> Daftar disini</span>
               </Link>
             </p>
+          </div>
+          <div className="flex flex-col ">
+            <button
+              onClick={handleGoogle}
+              className="bg-white my-1 rounded-md py-1 font-mono font-semibold hover:text-white  hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Signin with Google
+            </button>
+            <button
+              onClick={handleGithub}
+              className="bg-white my-1 rounded-md py-1 font-mono font-semibold hover:text-white  hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Signin with Github
+            </button>
           </div>
         </div>
       </div>

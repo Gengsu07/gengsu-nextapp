@@ -9,6 +9,7 @@ import gengsu from "../../../public/Gen.png";
 import Link from "next/link";
 
 const schema = z.object({
+  name: z.string().min(5, { message: "name too short" }),
   email: z.string().email({ message: "Invalid email" }),
   password: z.string().min(8, { message: "password too short" }),
 });
@@ -32,6 +33,7 @@ export default function SignUp() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        name: data.name,
         email: data.email,
         password: data.password,
       }),
@@ -59,10 +61,34 @@ export default function SignUp() {
               height={200}
             />
           </div>
+
           <div className="mt-10 text-center text-md  leading-9 tracking-tight text-red-500">
             {info && <p>{info.error}</p>}
           </div>
           <form className="space-y-6" action="#" method="POST">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium  text-white"
+              >
+                Full Name
+              </label>
+              <div className="mt-2">
+                <input
+                  id="name"
+                  type="name"
+                  autoComplete="name"
+                  {...register("name")}
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-blue-950 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-2"
+                />
+
+                <div className="text-md  leading-9 tracking-tight text-red-500">
+                  <p>{errors.email?.message}</p>
+                </div>
+              </div>
+            </div>
+
             <div>
               <label
                 htmlFor="email"

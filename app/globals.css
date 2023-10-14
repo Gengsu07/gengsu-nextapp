@@ -20,4 +20,8 @@ body {
 @layer base{
 h1{
   @apply text-2xl font-extrabold mb-3;
+}
+p{
+  @apply font-poppins;
 }}
+
