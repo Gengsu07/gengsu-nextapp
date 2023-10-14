@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +17,7 @@ const schema = z.object({
 export type loginData = z.infer<typeof schema>;
 
 export default function Login() {
-  const { status } = useSession();
+  const [info, SetInfo] = useState("");
   const {
     register,
     handleSubmit,
@@ -42,6 +42,9 @@ export default function Login() {
         password: data.password,
       });
       router.push("/");
+    } else {
+      const ket = await response.json();
+      SetInfo(ket);
     }
   };
   return (
@@ -58,6 +61,9 @@ export default function Login() {
           <h2 className="mt-10 text-center text-xl text-white font-bold">
             Login GengSquad
           </h2>
+          <div className="mt-10 text-center text-md  leading-9 tracking-tight text-red-500">
+            {info && <p>{info}</p>}
+          </div>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -78,7 +84,9 @@ export default function Login() {
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-blue-950 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                <p>{errors.email?.message}</p>
+                <div className="text-md  leading-9 tracking-tight text-red-500">
+                  <p>{errors.email?.message}</p>
+                </div>
               </div>
             </div>
 
@@ -100,7 +108,9 @@ export default function Login() {
                   required
                   className="block w-full rounded-md border-0 py-1.5text-blue-950 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                <p>{errors.password?.message}</p>
+                <div className="text-md  leading-9 tracking-tight text-red-500">
+                  <p>{errors.password?.message}</p>
+                </div>
               </div>
             </div>
 

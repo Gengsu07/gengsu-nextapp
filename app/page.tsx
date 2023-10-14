@@ -1,36 +1,19 @@
-import Link from "next/link";
-import ProductCard from "./components/ProductCard/ProductCard";
-import { getServerSession } from "next-auth";
-import { OAuthOption } from "./api/auth/[...nextauth]/route";
+import Image from "next/image";
+import freeplestine from "@/public/freepalestine.jpg";
 
 export default async function Home() {
-  const session = await getServerSession(OAuthOption);
   return (
     <>
-      <h1> Hello {session?.user?.email}</h1>
-      <ul>
-        <li>
-          <Link href={"/users"}>Users</Link>
-        </li>
-        {session ? (
-          <ProductCard />
-        ) : (
-          <div>
-            <p>Please Login or Register</p>
-            <div>
-              <Link href={"/signup"}>
-                <button className="btn bg-blue-800 text-white mx-2 my-2 hover:bg-blue-500 hover:text-gray-700">
-                  Register
-                </button>
-              </Link>
-            </div>
-          </div>
-        )}
-
-        <li>
-          <Link href={"/users/detail"}>Users Detail</Link>
-        </li>
-      </ul>
+      <div className="relative h-screen">
+        <Image
+          src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F17b2ab44-3cba-4bc9-ac88-5f4452f5d30a%2FIMG_0068.jpg?table=block&id=c6a9e4f4-77d8-4726-b57a-66cc06d922fd&spaceId=7079325e-a6cc-4427-b5ad-762f0ab6efec&width=2000&userId=9b8717a6-3ff4-4b97-9fce-297c73702f49&cache=v2"
+          alt="freeplestine"
+          fill
+          className="object-cover"
+          sizes="(max-width:480px) 100vw,(max-width:768px) 50vw, 33vw"
+          priority
+        ></Image>
+      </div>
     </>
   );
 }
