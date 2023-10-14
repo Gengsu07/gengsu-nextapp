@@ -37,7 +37,8 @@ export default async function Home() {
           <Image
             src="https://drive.google.com/uc?export=view&id=1BjtJi-cMUPBg_LJa-OwJn0nF7s9Z7NCz"
             alt="maountain"
-            objectFit="cover"
+            className="object-cover"
+            priority
             width={800}
             height={600}
             // sizes="(max-width:480px) 100vw,(max-width:768px) 50vw, 33vw"
@@ -47,7 +48,7 @@ export default async function Home() {
           <Image
             src={freeplestine}
             alt="freepalestine"
-            objectFit="cover"
+            className="object-cover"
             width={800}
             height={600}
           ></Image>

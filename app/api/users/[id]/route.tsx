@@ -6,17 +6,16 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const id = parseInt(params.id);
   const jmlUser = await prisma.user.count();
 
-  if (id > jmlUser)
+  if (parseInt(params.id) > jmlUser)
     return NextResponse.json(
       { error: "id you're requested more than available" },
       { status: 404 }
     );
-  if (id <= jmlUser) {
+  if (parseInt(params.id) <= jmlUser) {
     const user = await prisma.user.findUnique({
-      where: { id: id },
+      where: { id: params.id },
     });
     return NextResponse.json(user);
   }
@@ -31,7 +30,7 @@ export async function PUT(
   const validation = schemaUser.safeParse(body);
   //validate body
   const user = await prisma.user.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: params.id },
   });
 
   if (!user)
@@ -64,7 +63,7 @@ export async function DELETE(
 ) {
   //fetch data from db, show error 404 if not found
   const user = await prisma.user.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: params.id },
   });
   if (!user)
     return NextResponse.json({ error: "User not Found" }, { status: 404 });
